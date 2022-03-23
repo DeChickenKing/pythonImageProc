@@ -1,0 +1,22 @@
+import numpy as np
+import cv2
+import math
+from matplotlib import pyplot as plt
+
+image = cv2.imread(r'C:\Users\USER\Documents\pythonImageProc\409410411_hw3\blck.jpg')
+
+scale = eval(input('Please enter scale:'))
+nr,nc=image.shape[:2]
+nr2 = int(nr*scale)
+nc2 = int(nc*scale)
+newImg = cv2.resize(image,(nr2,nc2),interpolation=cv2.INTER_NEAREST)
+newImg_2 = cv2.resize(image,(nr2,nc2),interpolation=cv2.INTER_LINEAR)
+newImg_3 = cv2.resize(image,(nr2,nc2),interpolation=cv2.INTER_CUBIC)
+
+images = [image,newImg,newImg_2,newImg_3]
+plt.figure(figsize=(100,100))
+for i in range(4):
+    plt.subplot(1,4,i+1),plt.imshow(images[i],'gray')
+    plt.xticks([]),plt.yticks([])
+plt.tight_layout()
+plt.show()
